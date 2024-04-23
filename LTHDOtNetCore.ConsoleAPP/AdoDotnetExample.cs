@@ -12,7 +12,7 @@ namespace LTHDOtNetCore.ConsoleAPP
 {
     public class AdoDotnetExample
     {
-        private readonly SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder() { 
+        private readonly SqlConnectionStringBuilder sqlConnectionStringBuilder = new() { 
         DataSource = "DESKTOP-IF45PH3\\SQLEXPRESS",
         InitialCatalog = "DotnetTrainingBatch4",
         UserID = "sa",
@@ -21,15 +21,15 @@ namespace LTHDOtNetCore.ConsoleAPP
 
         public void GetAll()
         {
-            SqlConnection sqlConnection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
             string query = "select * from blog";
-            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            SqlCommand sqlCommand = new(query, sqlConnection);
+            SqlDataAdapter sqlDataAdapter = new(sqlCommand);
 
-            DataTable dataTable = new DataTable();
+            DataTable dataTable = new();
             sqlDataAdapter.Fill(dataTable);
 
             sqlConnection.Close();
@@ -46,16 +46,16 @@ namespace LTHDOtNetCore.ConsoleAPP
 
         public void GetById(int id)
         {
-            SqlConnection sqlConnection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
             string query = "select * from blog where id = @id";
-            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            SqlCommand sqlCommand = new(query, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@id", id);
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            SqlDataAdapter sqlDataAdapter = new(sqlCommand);
 
-            DataTable dataTable = new DataTable();
+            DataTable dataTable = new();
             sqlDataAdapter.Fill(dataTable);
 
             sqlConnection.Close();
@@ -78,7 +78,7 @@ namespace LTHDOtNetCore.ConsoleAPP
 
         public void Create(string title, string author, string content)
         {
-            SqlConnection sqlConnection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
@@ -88,7 +88,7 @@ namespace LTHDOtNetCore.ConsoleAPP
                             (@title,@author,@content)";
 
 
-            SqlCommand sqlCommand = new SqlCommand(query,sqlConnection);
+            SqlCommand sqlCommand = new(query,sqlConnection);
             sqlCommand.Parameters.AddWithValue("@title", title);
             sqlCommand.Parameters.AddWithValue("@author", author);
             sqlCommand.Parameters.AddWithValue("@content", content);
@@ -101,7 +101,7 @@ namespace LTHDOtNetCore.ConsoleAPP
         }
         public void Update(int id, string title, string author, string content)
         {
-            SqlConnection sqlConnection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
@@ -111,7 +111,7 @@ namespace LTHDOtNetCore.ConsoleAPP
                                 [blogContent]=@content
                             WHERE id = @id";
 
-            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            SqlCommand sqlCommand = new(query, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@id", id);
             sqlCommand.Parameters.AddWithValue("@title", title);
             sqlCommand.Parameters.AddWithValue("@author", author);
@@ -126,14 +126,14 @@ namespace LTHDOtNetCore.ConsoleAPP
         }
         public void Delete(int id)
         {
-            SqlConnection sqlConnection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
             string query = @"Delete From [dbo].[blog]
                             WHERE id = @id";
 
-            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            SqlCommand sqlCommand = new(query, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@id", id);
             int result = sqlCommand.ExecuteNonQuery();
 
