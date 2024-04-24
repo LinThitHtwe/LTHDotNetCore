@@ -7,21 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using System.Reflection.Metadata;
+using LTHDOtNetCore.ConsoleAPP.Connections;
+using LTHDOtNetCore.ConsoleAPP.Helper;
+using static LTHDOtNetCore.ConsoleAPP.Enums.Enum;
 
-namespace LTHDOtNetCore.ConsoleAPP
+namespace LTHDOtNetCore.ConsoleAPP.Examples
 {
     public class AdoDotnetExample
     {
-        private readonly SqlConnectionStringBuilder sqlConnectionStringBuilder = new() { 
-        DataSource = "DESKTOP-IF45PH3\\SQLEXPRESS",
-        InitialCatalog = "DotnetTrainingBatch4",
-        UserID = "sa",
-        Password = "root"
-        };
 
         public void GetAll()
         {
-            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
@@ -46,7 +43,7 @@ namespace LTHDOtNetCore.ConsoleAPP
 
         public void GetById(int id)
         {
-            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
@@ -61,7 +58,7 @@ namespace LTHDOtNetCore.ConsoleAPP
             sqlConnection.Close();
             Console.WriteLine("----Connection Close----");
 
-            if(dataTable.Rows.Count == 0)
+            if (dataTable.Rows.Count == 0)
             {
                 Console.WriteLine("No Data Found");
                 return;
@@ -78,7 +75,7 @@ namespace LTHDOtNetCore.ConsoleAPP
 
         public void Create(string title, string author, string content)
         {
-            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
@@ -88,20 +85,20 @@ namespace LTHDOtNetCore.ConsoleAPP
                             (@title,@author,@content)";
 
 
-            SqlCommand sqlCommand = new(query,sqlConnection);
+            SqlCommand sqlCommand = new(query, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@title", title);
             sqlCommand.Parameters.AddWithValue("@author", author);
             sqlCommand.Parameters.AddWithValue("@content", content);
             int result = sqlCommand.ExecuteNonQuery();
 
-            Console.WriteLine(result>0 ? "Successfully Created" : "Create Fail");
+            PrintData.PrintMutatedStatus(result,nameof(ManipulationMethods.create));   
 
             sqlConnection.Close();
             Console.WriteLine("----Connection Close----");
         }
         public void Update(int id, string title, string author, string content)
         {
-            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
@@ -118,15 +115,14 @@ namespace LTHDOtNetCore.ConsoleAPP
             sqlCommand.Parameters.AddWithValue("@content", content);
             int result = sqlCommand.ExecuteNonQuery();
 
-            Console.WriteLine(result > 0 ? "Successfully Updated" : "Update Fail");
-
+            PrintData.PrintMutatedStatus(result, nameof(ManipulationMethods.update));
 
             sqlConnection.Close();
             Console.WriteLine("----Connection Close----");
         }
         public void Delete(int id)
         {
-            SqlConnection sqlConnection = new(sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
@@ -137,7 +133,7 @@ namespace LTHDOtNetCore.ConsoleAPP
             sqlCommand.Parameters.AddWithValue("@id", id);
             int result = sqlCommand.ExecuteNonQuery();
 
-            Console.WriteLine(result > 0 ? "Successfully Deleted" : "Delete Fail");
+            PrintData.PrintMutatedStatus(result, nameof(ManipulationMethods.delete));
 
             sqlConnection.Close();
             Console.WriteLine("----Connection Close----");

@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using LTHDOtNetCore.ConsoleAPP.Connections;
+using LTHDOtNetCore.ConsoleAPP.Helper;
 using LTHDOtNetCore.ConsoleAPP.Model;
 using System;
 using System.Collections.Generic;
@@ -7,8 +9,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static LTHDOtNetCore.ConsoleAPP.Enums.Enum;
 
-namespace LTHDOtNetCore.ConsoleAPP
+namespace LTHDOtNetCore.ConsoleAPP.Examples
 {
     internal class DapperExample
     {
@@ -16,12 +19,12 @@ namespace LTHDOtNetCore.ConsoleAPP
         public void Run()
         {
             GetAll();
-            GetById(2);
-            Create("Dapper Title","Dapper Author","Dapper Content");
-            Update(1, "Updated Title", "Updated Author", "Updated Content");
-            GetAll();
-            Delete(2);
-            GetAll();
+            //GetById(2);
+            //Create("Dapper Title", "Dapper Author", "Dapper Content");
+            //Update(1, "Updated Title", "Updated Author", "Updated Content");
+            //GetAll();
+            //Delete(2);
+            //GetAll();
         }
 
         private void GetAll()
@@ -30,21 +33,21 @@ namespace LTHDOtNetCore.ConsoleAPP
             List<BlogModel> blogs = dbConnection.Query<BlogModel>("select * from blog").ToList();
             foreach (var blog in blogs)
             {
-                PrintBlogData(blog);
+                PrintData.PrintBlogData(blog);
             }
         }
 
         private void GetById(int id)
         {
             using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
-            var blog = dbConnection.Query<BlogModel>("select * from blog where id = @id",new BlogModel() {Id = id })
+            var blog = dbConnection.Query<BlogModel>("select * from blog where id = @id", new BlogModel() { Id = id })
                         .FirstOrDefault();
-            if(blog is null)
+            if (blog is null)
             {
                 Console.WriteLine("No Blog Found");
                 return;
             }
-            PrintBlogData(blog);
+            PrintData.PrintBlogData(blog);
         }
 
         private void Create(string title, string author, string content)
@@ -62,10 +65,9 @@ namespace LTHDOtNetCore.ConsoleAPP
 
             using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
             int result = dbConnection.Execute(query, blog);
-            string message = result > 0 ? "Successfully Created" : "Create Fail";
-            Console.WriteLine("---------");
-            Console.WriteLine(message);
-            Console.WriteLine("---------");
+            
+            PrintData.PrintMutatedStatus(result, nameof(ManipulationMethods.create));
+
         }
 
         private void Update(int id, string title, string author, string content)
@@ -84,10 +86,9 @@ namespace LTHDOtNetCore.ConsoleAPP
                             WHERE id = @id";
             using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
             int result = dbConnection.Execute(query, blog);
-            string message = result > 0 ? "Successfully Updated" : "Update Fail";
-            Console.WriteLine("---------");
-            Console.WriteLine(message);
-            Console.WriteLine("---------");
+
+            PrintData.PrintMutatedStatus(result, nameof(ManipulationMethods.update));
+            
 
         }
 
@@ -95,22 +96,9 @@ namespace LTHDOtNetCore.ConsoleAPP
         {
             using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
             int result = dbConnection.Execute("Delete From [dbo].[blog] WHERE id = @id", new { id });
-            string message = result > 0 ? "Successfully Deleted" : "Delete Fail";
-            Console.WriteLine("---------");
-            Console.WriteLine(message);
-            Console.WriteLine("---------");
+           
+            PrintData.PrintMutatedStatus(result, nameof(ManipulationMethods.delete));
+            
         }
-
-
-        private static void PrintBlogData(BlogModel blog)
-        {
-            Console.WriteLine("---------");
-            Console.WriteLine("Id : " + blog.Id);
-            Console.WriteLine("Id : " + blog.Title);
-            Console.WriteLine("Id : " + blog.Author);
-            Console.WriteLine("Id : " + blog.BlogContent);
-            Console.WriteLine("---------");
-        }
-
     }
 }

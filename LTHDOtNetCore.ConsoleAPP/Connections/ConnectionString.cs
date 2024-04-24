@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LTHDOtNetCore.ConsoleAPP
+namespace LTHDOtNetCore.ConsoleAPP.Connections
 {
     internal class ConnectionString
     {
-        public static SqlConnectionStringBuilder sqlConnectionStringBuilder = new() 
+        public static SqlConnectionStringBuilder sqlConnectionStringBuilder = new()
         {
             DataSource = "DESKTOP-IF45PH3\\SQLEXPRESS",
             InitialCatalog = "DotnetTrainingBatch4",

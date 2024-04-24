@@ -1,5 +1,4 @@
-﻿
-using LTHDOtNetCore.ConsoleAPP;
+﻿using LTHDOtNetCore.ConsoleAPP.Examples;
 
 Console.WriteLine("Hello, World!");
 
