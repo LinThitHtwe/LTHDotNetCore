@@ -20,17 +20,17 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
         {
             GetAll();
             //GetById(2);
-            //Create("Dapper Title", "Dapper Author", "Dapper Content");
+            Create("Dapper Title", "Dapper Author", "Dapper Content");
             //Update(1, "Updated Title", "Updated Author", "Updated Content");
             //GetAll();
             //Delete(2);
-            //GetAll();
+            GetAll();
         }
 
         private void GetAll()
         {
             using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
-            List<BlogModel> blogs = dbConnection.Query<BlogModel>("select * from blog").ToList();
+            List<BlogDapperModel> blogs = dbConnection.Query<BlogDapperModel>("select * from blog").ToList();
             foreach (var blog in blogs)
             {
                 PrintData.PrintBlogData(blog);
@@ -40,7 +40,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
         private void GetById(int id)
         {
             using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
-            var blog = dbConnection.Query<BlogModel>("select * from blog where id = @id", new BlogModel() { Id = id })
+            var blog = dbConnection.Query<BlogDapperModel>("select * from blog where id = @id", new BlogDapperModel() { Id = id })
                         .FirstOrDefault();
             if (blog is null)
             {
@@ -52,7 +52,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
 
         private void Create(string title, string author, string content)
         {
-            BlogModel blog = new()
+            BlogDapperModel blog = new()
             {
                 Title = title,
                 Author = author,
@@ -66,13 +66,13 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
             using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
             int result = dbConnection.Execute(query, blog);
             
-            PrintData.PrintMutatedStatus(result, nameof(ManipulationMethods.create));
+            PrintData.PrintMutatedStatus(result, ManipulationMethods.create);
 
         }
 
         private void Update(int id, string title, string author, string content)
         {
-            BlogModel blog = new()
+            BlogDapperModel blog = new()
             {
                 Id = id,
                 Title = title,
@@ -87,7 +87,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
             using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
             int result = dbConnection.Execute(query, blog);
 
-            PrintData.PrintMutatedStatus(result, nameof(ManipulationMethods.update));
+            PrintData.PrintMutatedStatus(result, ManipulationMethods.update);
             
 
         }
@@ -97,7 +97,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
             using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
             int result = dbConnection.Execute("Delete From [dbo].[blog] WHERE id = @id", new { id });
            
-            PrintData.PrintMutatedStatus(result, nameof(ManipulationMethods.delete));
+            PrintData.PrintMutatedStatus(result, ManipulationMethods.delete);
             
         }
     }

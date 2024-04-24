@@ -10,30 +10,31 @@ namespace LTHDOtNetCore.ConsoleAPP.Helper
 {
     internal class PrintData
     {
-        public static void PrintBlogData(BlogModel blog)
+        public static void PrintBlogData(object blog)
         {
             Console.WriteLine("---------");
-            Console.WriteLine("Id : " + blog.Id);
-            Console.WriteLine("Id : " + blog.Title);
-            Console.WriteLine("Id : " + blog.Author);
-            Console.WriteLine("Id : " + blog.BlogContent);
+            foreach (var property in blog.GetType().GetProperties())
+            {
+                Console.WriteLine($"{property.Name} : {property.GetValue(blog)}");
+            }
             Console.WriteLine("---------");
         }
 
-        public static void PrintMutatedStatus(int result, string manipulationMethods)
+
+        public static void PrintMutatedStatus(int result, ManipulationMethods manipulationMethods)
         {
             Console.WriteLine("---------");
             string status = result > 0 ? "Successfully" : "Fail";
 
             switch (manipulationMethods)
             {
-                case nameof(ManipulationMethods.create):
+                case (ManipulationMethods.create):
                     Console.WriteLine($"Create {status}");
                     break;
-                case nameof(ManipulationMethods.update):
+                case (ManipulationMethods.update):
                     Console.WriteLine($"Update {status}");
                     break;
-                case nameof(ManipulationMethods.delete):
+                case (ManipulationMethods.delete):
                     Console.WriteLine($"Delete {status}");
                     break;
                 default:

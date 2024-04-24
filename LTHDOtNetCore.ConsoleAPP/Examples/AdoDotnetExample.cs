@@ -91,7 +91,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
             sqlCommand.Parameters.AddWithValue("@content", content);
             int result = sqlCommand.ExecuteNonQuery();
 
-            PrintData.PrintMutatedStatus(result,nameof(ManipulationMethods.create));   
+            PrintData.PrintMutatedStatus(result,ManipulationMethods.create);   
 
             sqlConnection.Close();
             Console.WriteLine("----Connection Close----");
@@ -115,7 +115,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
             sqlCommand.Parameters.AddWithValue("@content", content);
             int result = sqlCommand.ExecuteNonQuery();
 
-            PrintData.PrintMutatedStatus(result, nameof(ManipulationMethods.update));
+            PrintData.PrintMutatedStatus(result, ManipulationMethods.update);
 
             sqlConnection.Close();
             Console.WriteLine("----Connection Close----");
@@ -133,7 +133,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
             sqlCommand.Parameters.AddWithValue("@id", id);
             int result = sqlCommand.ExecuteNonQuery();
 
-            PrintData.PrintMutatedStatus(result, nameof(ManipulationMethods.delete));
+            PrintData.PrintMutatedStatus(result, ManipulationMethods.delete);
 
             sqlConnection.Close();
             Console.WriteLine("----Connection Close----");

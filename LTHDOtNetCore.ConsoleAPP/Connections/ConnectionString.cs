@@ -14,7 +14,8 @@ namespace LTHDOtNetCore.ConsoleAPP.Connections
             DataSource = "DESKTOP-IF45PH3\\SQLEXPRESS",
             InitialCatalog = "DotnetTrainingBatch4",
             UserID = "sa",
-            Password = "root"
+            Password = "root",
+            TrustServerCertificate = true,
         };
     }
 }
