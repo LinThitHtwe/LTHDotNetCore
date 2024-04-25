@@ -1,4 +1,5 @@
 ﻿using LTHDOtNetCore.RestApi.Db;
+using LTHDOtNetCore.RestApi.DTOs;
 using LTHDOtNetCore.RestApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -43,7 +44,7 @@ namespace LTHDOtNetCore.RestApi.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(400)]
-        public IActionResult CreateBlog(BlogModel requestBlog)
+        public IActionResult CreateBlog(BlogRequestDTO requestBlog)
         {
             if(requestBlog is null)
             {
@@ -55,7 +56,14 @@ namespace LTHDOtNetCore.RestApi.Controllers
                 return BadRequest("Title length should be more than 2 characters");
             }
 
-            _dbContext.Blogs.Add(requestBlog);
+            BlogModel blog = new()
+            {
+                Title = requestBlog.Title,
+                Author = requestBlog.Author,
+                Content = requestBlog.Content
+            };
+
+            _dbContext.Blogs.Add(blog);
             int result = _dbContext.SaveChanges();
             string responseMessage = ManipulatedStatusMessage(result, ManipulationMethods.create);
             return Ok(responseMessage);
@@ -66,15 +74,11 @@ namespace LTHDOtNetCore.RestApi.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(424)]
-        public IActionResult UpdateBlog(int id,BlogModel requestBlog)
+        public IActionResult UpdateBlog(int id, BlogRequestDTO requestBlog)
         {
             if (requestBlog is null)
             {
                 return BadRequest("Field Require");
-            }
-            if(requestBlog.Id != id)
-            {
-                return BadRequest("Different Ids in request");
             }
             var existingBlog = GetBlogByIdHelper(id);
             if (existingBlog is null)
