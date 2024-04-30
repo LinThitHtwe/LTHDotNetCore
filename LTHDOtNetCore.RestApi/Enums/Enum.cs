@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LTHDOtNetCore.RestApi.Enums
 {
-    internal class Enum
+    public class Enum
     {
         public enum ManipulationMethods
         {

@@ -1,5 +1,6 @@
 ﻿using LTHDOtNetCore.RestApi.Db;
 using LTHDOtNetCore.RestApi.DTOs;
+using LTHDOtNetCore.RestApi.Helpers;
 using LTHDOtNetCore.RestApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -65,7 +66,7 @@ namespace LTHDOtNetCore.RestApi.Controllers
 
             _dbContext.Blogs.Add(blog);
             int result = _dbContext.SaveChanges();
-            string responseMessage = ManipulatedStatusMessage(result, ManipulationMethods.create);
+            string responseMessage = ReturnMessages.ManipulatedStatusMessage(result, ManipulationMethods.create);
             return Ok(responseMessage);
         }
 
@@ -89,7 +90,7 @@ namespace LTHDOtNetCore.RestApi.Controllers
             existingBlog.Author = requestBlog.Author;
             existingBlog.Content = requestBlog.Content;
             int result = _dbContext.SaveChanges();
-            string responseMessage = ManipulatedStatusMessage(result, ManipulationMethods.delete);
+            string responseMessage = ReturnMessages.ManipulatedStatusMessage(result, ManipulationMethods.delete);
             return Ok(responseMessage);
         }
 
@@ -107,7 +108,7 @@ namespace LTHDOtNetCore.RestApi.Controllers
             }
             _dbContext.Blogs.Remove(blog);
             int result = _dbContext.SaveChanges();
-            string responseMessage = ManipulatedStatusMessage(result, ManipulationMethods.delete);
+            string responseMessage = ReturnMessages.ManipulatedStatusMessage(result, ManipulationMethods.delete);
             return Ok(responseMessage);
         }
 
@@ -118,17 +119,5 @@ namespace LTHDOtNetCore.RestApi.Controllers
             return blog;
         }
 
-        private static string ManipulatedStatusMessage(int result, ManipulationMethods manipulationMethods)
-        {
-            string status = result > 0 ? "Successfully" : "Fail";
-
-            return manipulationMethods switch
-            {
-                (ManipulationMethods.create) => ($"Create {status}"),
-                (ManipulationMethods.update) => ($"Update {status}"),
-                (ManipulationMethods.delete) => ($"Delete {status}"),
-                _ => ("Something Went Wrong"),
-            };
-        }
     }
 }
