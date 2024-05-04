@@ -20,6 +20,13 @@ namespace LTHDOtNetCore.Shared
             return list;
         }
 
+        public T? QueryFirstOrDefault<T>(string query,object? param = null)
+        {
+            using IDbConnection dbConnection = new SqlConnection(_connectionString);
+            var item = dbConnection.Query<T>(query, param).FirstOrDefault();
+            return item;
+        }
+
         public int Execute(string query, object? param = null)
         {
             using IDbConnection dbConnection = new SqlConnection(_connectionString);

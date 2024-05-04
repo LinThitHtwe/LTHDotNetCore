@@ -2,6 +2,7 @@
 using LTHDOtNetCore.RestApi.Db;
 using LTHDOtNetCore.RestApi.Helpers;
 using LTHDOtNetCore.RestApi.Models;
+using LTHDOtNetCore.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
@@ -12,14 +13,15 @@ namespace LTHDOtNetCore.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BlogDapperUsingServiceController : ControllerBase
+    public class BlogDapperController : ControllerBase
     {
+        private readonly DapperService _dapperService = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+        
         [HttpGet]
         public IActionResult GetAllBlogs()
         {
             string query = "select * from blog";
-            using IDbConnection db = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
-            List<BlogDapperModel> blogs = db.Query<BlogDapperModel>(query).ToList();
+            var blogs = _dapperService.Query<BlogDapperModel>(query);
             return Ok(blogs);
         }
 
@@ -42,9 +44,7 @@ namespace LTHDOtNetCore.RestApi.Controllers
                             VALUES
                             (@title,@author,@blogContent)";
 
-            using IDbConnection db = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, blog);
-
+            int result = _dapperService.Execute(query, blog);
             string responseMessage = ReturnMessages.ManipulatedStatusMessage(result, ManipulationMethods.create);
             return Ok(responseMessage);
         }
@@ -65,8 +65,7 @@ namespace LTHDOtNetCore.RestApi.Controllers
                                 [blogContent]=@blogContent
                             WHERE id = @id";
 
-            using IDbConnection db = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, blog);
+            int result = _dapperService.Execute(query, blog);
 
             string responseMessage = ReturnMessages.ManipulatedStatusMessage(result, ManipulationMethods.delete);
             return Ok(responseMessage);
@@ -107,9 +106,8 @@ namespace LTHDOtNetCore.RestApi.Controllers
                               SET {conditions} 
                               WHERE id = @id";
 
-            using IDbConnection db = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, blog);
-
+            
+            int result = _dapperService.Execute(query, blog);
             string responseMessage = ReturnMessages.ManipulatedStatusMessage(result, ManipulationMethods.delete);
             return Ok(responseMessage);
         }
@@ -124,8 +122,7 @@ namespace LTHDOtNetCore.RestApi.Controllers
             }
 
             string query = @"Delete From [dbo].[blog] WHERE id = @id";
-            using IDbConnection db = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, new BlogModel { Id = id });
+            int result = _dapperService.Execute(query, new BlogModel { Id = id });
 
             string responseMessage = ReturnMessages.ManipulatedStatusMessage(result, ManipulationMethods.delete);
             return Ok(responseMessage);
@@ -133,11 +130,10 @@ namespace LTHDOtNetCore.RestApi.Controllers
 
 
 
-        private static BlogDapperModel? FindById(int id)
+        private BlogDapperModel? FindById(int id)
         {
             string query = "select * from blog where id = @id";
-            using IDbConnection db = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
-            var blog = db.Query<BlogDapperModel>(query, new BlogDapperModel { Id = id }).FirstOrDefault();
+            var blog = _dapperService.QueryFirstOrDefault<BlogDapperModel>(query, new BlogDapperModel { Id = id });
             return blog;
         }
     }
