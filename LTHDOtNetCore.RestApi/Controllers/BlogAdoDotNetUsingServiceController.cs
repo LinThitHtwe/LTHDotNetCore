@@ -35,7 +35,7 @@ namespace LTHDOtNetCore.RestApi.Controllers
         public IActionResult GetBlogById(int id)
         {
             string query = "select * from blog where id = @id";
-
+            
             var blog = _adoDotNetService.QueryFirstOrDefault<BlogModel>(query, new AdoDotNetParameter("@id", id));
             if (blog is null)
             {
