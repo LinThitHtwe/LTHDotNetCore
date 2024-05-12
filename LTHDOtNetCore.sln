@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.Shared", "LTH
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.RestApiWithNLayer", "LTHDOtNetCore.RestApiWithNLayer\LTHDOtNetCore.RestApiWithNLayer.csproj", "{507385A9-F490-4D56-A0B4-0801A7925B7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTHDOtNetCore.ConsoleAppHttpClient", "LTHDOtNetCore.ConsoleAppHttpClient\LTHDOtNetCore.ConsoleAppHttpClient.csproj", "{A35E434A-B6B4-4792-8AA9-9DF26271B5A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.ConsoleAppHttpClient", "LTHDOtNetCore.ConsoleAppHttpClient\LTHDOtNetCore.ConsoleAppHttpClient.csproj", "{A35E434A-B6B4-4792-8AA9-9DF26271B5A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTHDOtNetCore.ConsoleAppHttpClientExamples", "LTHDOtNetCore.ConsoleAppHttpClientExamples\LTHDOtNetCore.ConsoleAppHttpClientExamples.csproj", "{3739B81C-5271-4A5A-8EBA-0E8BE9B8AFBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{A35E434A-B6B4-4792-8AA9-9DF26271B5A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A35E434A-B6B4-4792-8AA9-9DF26271B5A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A35E434A-B6B4-4792-8AA9-9DF26271B5A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3739B81C-5271-4A5A-8EBA-0E8BE9B8AFBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3739B81C-5271-4A5A-8EBA-0E8BE9B8AFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3739B81C-5271-4A5A-8EBA-0E8BE9B8AFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3739B81C-5271-4A5A-8EBA-0E8BE9B8AFBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
