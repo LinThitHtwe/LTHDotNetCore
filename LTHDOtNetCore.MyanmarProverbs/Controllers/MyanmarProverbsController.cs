@@ -33,7 +33,7 @@ namespace LTHDOtNetCore.MyanmarProverbs.Controllers
         }
 
         [HttpGet("ProverbNames/Title/{titleId}")]
-        public async Task<IActionResult> GetProverbNamesByTitleId(int titleId)
+        public async Task<IActionResult> GetProverbNamesByTitleIdAsync(int titleId)
         {
             var mmProverbs = JsonConvert.DeserializeObject<MyanmarProverbsModel>(await GetJsonDataAsync());
             var proverbNames = mmProverbs!.MmProverbs
@@ -48,7 +48,7 @@ namespace LTHDOtNetCore.MyanmarProverbs.Controllers
         }
 
         [HttpGet("ProverbDetail/{proverbId}")]
-        public async Task<IActionResult> GetProverbDetailByPorverbId(int proverbId)
+        public async Task<IActionResult> GetProverbDetailByPorverbIdAsync(int proverbId)
         {
             var mmProverbs = JsonConvert.DeserializeObject<MyanmarProverbsModel>(await GetJsonDataAsync());
             var proverbDetail = mmProverbs!.MmProverbs
