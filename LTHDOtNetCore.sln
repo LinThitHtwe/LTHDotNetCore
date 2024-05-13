@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.RestApiWithNL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.ConsoleAppHttpClient", "LTHDOtNetCore.ConsoleAppHttpClient\LTHDOtNetCore.ConsoleAppHttpClient.csproj", "{A35E434A-B6B4-4792-8AA9-9DF26271B5A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTHDOtNetCore.ConsoleAppHttpClientExamples", "LTHDOtNetCore.ConsoleAppHttpClientExamples\LTHDOtNetCore.ConsoleAppHttpClientExamples.csproj", "{3739B81C-5271-4A5A-8EBA-0E8BE9B8AFBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.ConsoleAppHttpClientExamples", "LTHDOtNetCore.ConsoleAppHttpClientExamples\LTHDOtNetCore.ConsoleAppHttpClientExamples.csproj", "{3739B81C-5271-4A5A-8EBA-0E8BE9B8AFBD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.ConsoleAppRestClientExamples", "LTHDOtNetCore.ConsoleAppRestClientExamples\LTHDOtNetCore.ConsoleAppRestClientExamples.csproj", "{219C4257-B257-4A44-ADF6-E216627909C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTHDOtNetCore.MyanmarProverbs", "LTHDOtNetCore.MyanmarProverbs\LTHDOtNetCore.MyanmarProverbs.csproj", "{511DB1B8-57FE-419C-B42C-B47DC045D839}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{3739B81C-5271-4A5A-8EBA-0E8BE9B8AFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3739B81C-5271-4A5A-8EBA-0E8BE9B8AFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3739B81C-5271-4A5A-8EBA-0E8BE9B8AFBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{219C4257-B257-4A44-ADF6-E216627909C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{219C4257-B257-4A44-ADF6-E216627909C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{219C4257-B257-4A44-ADF6-E216627909C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{219C4257-B257-4A44-ADF6-E216627909C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{511DB1B8-57FE-419C-B42C-B47DC045D839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{511DB1B8-57FE-419C-B42C-B47DC045D839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{511DB1B8-57FE-419C-B42C-B47DC045D839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{511DB1B8-57FE-419C-B42C-B47DC045D839}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
