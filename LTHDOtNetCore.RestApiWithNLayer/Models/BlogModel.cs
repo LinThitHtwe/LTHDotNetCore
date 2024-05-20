@@ -13,4 +13,6 @@
         [Column("blogContent")]
         public string Content { get; set; }
     }
+
+
 }
