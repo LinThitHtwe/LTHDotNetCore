@@ -1,9 +1,9 @@
 ﻿namespace LTHDOtNetCore.PizzaAPI.DTOs
 {
-    public class OrderRequestDTO
+    public record OrderRequestDTO
     {
-        public int PizzaId { get; set; }
-        public int[] Extras { get; set; }
+        public int PizzaId { get; init; }
+        public int[] Extras { get; init; }
     }
 
     public class OrderResponseDTO
