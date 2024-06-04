@@ -16,5 +16,17 @@ namespace LTHDOtNetCore.WindowFormApp
         {
             InitializeComponent();
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmBlog frmBlog = new();
+            frmBlog.ShowDialog();
+        }
+
+        private void blogsListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmBlogsList frmBlogsList = new();
+            frmBlogsList.ShowDialog();
+        }
     }
 }
