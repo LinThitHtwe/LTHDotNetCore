@@ -1,6 +1,53 @@
 const BLOG_LOCAL_STORAGE = "blogs";
 let blogId = null;
 
+function testConfirmMessage() {
+  let confirmMessage = new Promise(function (success, error) {
+    const result = confirm("Do u really want to delete this?");
+    if (result) {
+      success();
+    } else {
+      error();
+    }
+  });
+
+  confirmMessage.then(
+    function (value) {
+      successMessage("Success Twr p");
+    },
+    function (error) {
+      errorMessage("Error LOL");
+    }
+  );
+}
+
+function testConfirmMessage2() {
+  let confirmMessage = new Promise(function (success, error) {
+    Swal.fire({
+      title: "Confirm",
+      text: "Delete Mhr Lr?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        success();
+      } else {
+        error();
+      }
+    });
+  });
+
+  confirmMessage.then(
+    function () {
+      successMessage("Success");
+    },
+    function () {
+      errorMessage("Error");
+    }
+  );
+}
+
 const getExistingBlogs = () => {
   const blogsJsonString = localStorage.getItem(BLOG_LOCAL_STORAGE);
   return blogsJsonString ? JSON.parse(blogsJsonString) : [];
@@ -70,13 +117,30 @@ function deleteBlog(id) {
   getBlogTable();
 }
 
-const uuidv4 = () => {
-  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c) =>
-    (
-      +c ^
-      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))
-    ).toString(16)
-  );
+const deleteBlog3 = (id) => {
+  Swal.fire({
+    title: "Confirm",
+    text: "Are you sure want to delete?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes",
+  }).then((result) => {
+    if (!result.isConfirmed) return;
+
+    let blogs = getExistingBlogs();
+
+    const blog = lst.find((b) => b.id === id);
+    if (!blog) {
+      return;
+    }
+
+    blogs = blogs.filter((x) => x.id !== id);
+    localStorage.setItem(BLOG_LOCAL_STORAGE, JSON.stringify(blogs));
+
+    successMessage("Successfully Deleted");
+
+    getBlogTable();
+  });
 };
 
 const getBlogById = (id) => {
