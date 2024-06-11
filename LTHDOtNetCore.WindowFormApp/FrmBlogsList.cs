@@ -33,6 +33,32 @@ namespace LTHDOtNetCore.WindowFormApp
             dgvTable.DataSource = blogs;
         }
 
-        
+        private void dgvTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+
+            var blogId = Convert.ToInt32(dgvTable.Rows[e.RowIndex].Cells["colId"].Value);
+
+            if (e.ColumnIndex == (int)EnumFormControlType.Edit)
+            {
+
+            }
+
+            if (e.ColumnIndex == (int)EnumFormControlType.Delete)
+            {
+                var dialogResult = MessageBox.Show("Are you sure want to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult != DialogResult.Yes) return;
+
+                DeleteBlog(blogId);
+            }
+        }
+
+        private void DeleteBlog(int id)
+        {
+            int result = _dapperService.Execute(BlogQuery.DeleteBlog, new { id });
+            string message = result > 0 ? "Successfully Deleted" : "Delete Fail.";
+            MessageBox.Show(message);
+            GetBlogList();
+        }
     }
 }

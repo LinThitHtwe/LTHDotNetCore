@@ -12,12 +12,16 @@ namespace LTHDOtNetCore.WindowFormApp.Queries
                                                    ([title],[author],[blogContent])
                                                    VALUES
                                                    (@title,@author,@blogContent)";
-    
+
         public static string BlogList { get; } = @"SELECT 
                                                 [id],
                                                 [title],
                                                 [author],
                                                 [blogContent]
                                                 FROM [dbo].[blog]";
+
+        public static string DeleteBlog { get; } = @"Delete From 
+                                                    [dbo].[blog] 
+                                                    WHERE id = @id";
     }
 }

@@ -33,6 +33,8 @@
             colTitle = new DataGridViewTextBoxColumn();
             colAuthor = new DataGridViewTextBoxColumn();
             colContent = new DataGridViewTextBoxColumn();
+            Edit = new DataGridViewButtonColumn();
+            Delete = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)dgvTable).BeginInit();
             SuspendLayout();
             // 
@@ -42,7 +44,7 @@
             dgvTable.AllowUserToDeleteRows = false;
             dgvTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTable.Columns.AddRange(new DataGridViewColumn[] { colId, colTitle, colAuthor, colContent });
+            dgvTable.Columns.AddRange(new DataGridViewColumn[] { colId, colTitle, colAuthor, colContent, Edit, Delete });
             dgvTable.Dock = DockStyle.Fill;
             dgvTable.Location = new Point(0, 0);
             dgvTable.Name = "dgvTable";
@@ -50,6 +52,7 @@
             dgvTable.RowTemplate.Height = 25;
             dgvTable.Size = new Size(800, 450);
             dgvTable.TabIndex = 0;
+            dgvTable.CellContentClick += dgvTable_CellContentClick;
             // 
             // colId
             // 
@@ -79,6 +82,22 @@
             colContent.Name = "colContent";
             colContent.ReadOnly = true;
             // 
+            // Edit
+            // 
+            Edit.HeaderText = "Edit";
+            Edit.Name = "Edit";
+            Edit.ReadOnly = true;
+            Edit.Text = "Edit";
+            Edit.UseColumnTextForButtonValue = true;
+            // 
+            // Delete
+            // 
+            Delete.HeaderText = "Delete";
+            Delete.Name = "Delete";
+            Delete.ReadOnly = true;
+            Delete.Text = "Delete";
+            Delete.UseColumnTextForButtonValue = true;
+            // 
             // FrmBlogsList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -100,5 +119,7 @@
         private DataGridViewTextBoxColumn colTitle;
         private DataGridViewTextBoxColumn colAuthor;
         private DataGridViewTextBoxColumn colContent;
+        private DataGridViewButtonColumn Edit;
+        private DataGridViewButtonColumn Delete;
     }
 }
