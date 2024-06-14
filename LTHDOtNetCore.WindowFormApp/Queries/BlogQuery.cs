@@ -20,6 +20,20 @@ namespace LTHDOtNetCore.WindowFormApp.Queries
                                                 [blogContent]
                                                 FROM [dbo].[blog]";
 
+        public static string GetBlogById { get; } = @"SELECT 
+                                                    [id],
+                                                    [title],
+                                                    [author],
+                                                    [blogContent]
+                                                    FROM [dbo].[blog]
+                                                    WHERE id = @id";
+
+        public static string UpdateBlog { get; } = @"Update [dbo].[blog]
+                                                   SET [title] = @title,
+                                                   [author]=@author,
+                                                   [blogContent]=@blogContent
+                                                    WHERE id = @id";
+
         public static string DeleteBlog { get; } = @"Delete From 
                                                     [dbo].[blog] 
                                                     WHERE id = @id";

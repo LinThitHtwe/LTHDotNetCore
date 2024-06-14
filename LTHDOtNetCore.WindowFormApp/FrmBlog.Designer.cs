@@ -36,6 +36,7 @@
             label3 = new Label();
             BlogSubmitBtn = new Button();
             CancelBtn = new Button();
+            btnUpdate = new Button();
             SuspendLayout();
             // 
             // AuthorInput
@@ -108,11 +109,24 @@
             CancelBtn.UseVisualStyleBackColor = true;
             CancelBtn.Click += CancelBtn_Click;
             // 
+            // btnUpdate
+            // 
+            btnUpdate.FlatStyle = FlatStyle.Flat;
+            btnUpdate.Location = new Point(138, 331);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(75, 23);
+            btnUpdate.TabIndex = 9;
+            btnUpdate.Text = "&Update";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Visible = false;
+            btnUpdate.Click += btnUpdate_Click;
+            // 
             // FrmBlog
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnUpdate);
             Controls.Add(CancelBtn);
             Controls.Add(BlogSubmitBtn);
             Controls.Add(label3);
@@ -137,5 +151,6 @@
         private Label label3;
         private Button BlogSubmitBtn;
         private Button CancelBtn;
+        private Button btnUpdate;
     }
 }

@@ -41,7 +41,8 @@ namespace LTHDOtNetCore.WindowFormApp
 
             if (e.ColumnIndex == (int)EnumFormControlType.Edit)
             {
-
+                FrmBlog frm = new FrmBlog(blogId);
+                frm.ShowDialog();
             }
 
             if (e.ColumnIndex == (int)EnumFormControlType.Delete)
@@ -51,6 +52,8 @@ namespace LTHDOtNetCore.WindowFormApp
 
                 DeleteBlog(blogId);
             }
+
+            GetBlogList();
         }
 
         private void DeleteBlog(int id)
@@ -58,7 +61,6 @@ namespace LTHDOtNetCore.WindowFormApp
             int result = _dapperService.Execute(BlogQuery.DeleteBlog, new { id });
             string message = result > 0 ? "Successfully Deleted" : "Delete Fail.";
             MessageBox.Show(message);
-            GetBlogList();
         }
     }
 }
