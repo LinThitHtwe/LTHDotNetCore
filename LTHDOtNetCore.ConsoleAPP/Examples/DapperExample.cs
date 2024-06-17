@@ -13,8 +13,14 @@ using static LTHDOtNetCore.ConsoleAPP.Enums.Enum;
 
 namespace LTHDOtNetCore.ConsoleAPP.Examples
 {
-    internal class DapperExample
+    public class DapperExample
     {
+        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder;
+
+        public DapperExample(SqlConnectionStringBuilder sqlConnectionStringBuilder)
+        {
+            _sqlConnectionStringBuilder = sqlConnectionStringBuilder;
+        }
 
         public void Run()
         {
@@ -29,7 +35,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
 
         private void GetAll()
         {
-            using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+            using IDbConnection dbConnection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             List<BlogDapperModel> blogs = dbConnection.Query<BlogDapperModel>("select * from blog").ToList();
             foreach (var blog in blogs)
             {
@@ -39,7 +45,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
 
         private void GetById(int id)
         {
-            using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+            using IDbConnection dbConnection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             var blog = dbConnection.Query<BlogDapperModel>("select * from blog where id = @id", new BlogDapperModel() { Id = id })
                         .FirstOrDefault();
             if (blog is null)
@@ -63,9 +69,9 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
                             VALUES
                             (@title,@author,@blogContent)";
 
-            using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+            using IDbConnection dbConnection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             int result = dbConnection.Execute(query, blog);
-            
+
             PrintData.PrintMutatedStatus(result, ManipulationMethods.create);
 
         }
@@ -84,21 +90,21 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
                                 [author]=@author,
                                 [blogContent]=@blogContent
                             WHERE id = @id";
-            using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+            using IDbConnection dbConnection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             int result = dbConnection.Execute(query, blog);
 
             PrintData.PrintMutatedStatus(result, ManipulationMethods.update);
-            
+
 
         }
 
         private void Delete(int id)
         {
-            using IDbConnection dbConnection = new SqlConnection(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+            using IDbConnection dbConnection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             int result = dbConnection.Execute("Delete From [dbo].[blog] WHERE id = @id", new { id });
-           
+
             PrintData.PrintMutatedStatus(result, ManipulationMethods.delete);
-            
+
         }
     }
 }

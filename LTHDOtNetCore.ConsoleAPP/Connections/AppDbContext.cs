@@ -8,13 +8,17 @@ using System.Threading.Tasks;
 
 namespace LTHDOtNetCore.ConsoleAPP.Connections
 {
-    internal class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDbContext(DbContextOptions options) : base(options)
         {
-            optionsBuilder.UseSqlServer(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+
         }
-       public DbSet<BlogModel> Blogs { get; set; }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+        //}
+        public DbSet<BlogModel> Blogs { get; set; }
 
     }
 }

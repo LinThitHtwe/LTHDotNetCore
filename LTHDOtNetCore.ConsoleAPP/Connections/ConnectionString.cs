@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LTHDOtNetCore.ConsoleAPP.Connections
 {
-    internal class ConnectionString
+    public class ConnectionString
     {
         public static SqlConnectionStringBuilder sqlConnectionStringBuilder = new()
         {

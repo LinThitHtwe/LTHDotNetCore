@@ -14,9 +14,13 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
     {
         private readonly AppDbContext _appDbContext;
 
-        public EFCoreExample() 
+        public EFCoreExample(AppDbContext appDbContext)
         {
-            _appDbContext = new AppDbContext();
+            _appDbContext = appDbContext;
+        }
+
+        public EFCoreExample()
+        {
         }
 
         public void Run()

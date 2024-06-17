@@ -16,9 +16,16 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
     public class AdoDotnetExample
     {
 
+        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder;
+
+        public AdoDotnetExample(SqlConnectionStringBuilder sqlConnectionStringBuilder)
+        {
+            _sqlConnectionStringBuilder = sqlConnectionStringBuilder;
+        }
+
         public void GetAll()
         {
-            SqlConnection sqlConnection = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(_sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
@@ -43,7 +50,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
 
         public void GetById(int id)
         {
-            SqlConnection sqlConnection = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(_sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
@@ -75,7 +82,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
 
         public void Create(string title, string author, string content)
         {
-            SqlConnection sqlConnection = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(_sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
@@ -98,7 +105,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
         }
         public void Update(int id, string title, string author, string content)
         {
-            SqlConnection sqlConnection = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(_sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
@@ -122,7 +129,7 @@ namespace LTHDOtNetCore.ConsoleAPP.Examples
         }
         public void Delete(int id)
         {
-            SqlConnection sqlConnection = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+            SqlConnection sqlConnection = new(_sqlConnectionStringBuilder.ConnectionString);
             sqlConnection.Open();
             Console.WriteLine("----Connection Open----");
 
