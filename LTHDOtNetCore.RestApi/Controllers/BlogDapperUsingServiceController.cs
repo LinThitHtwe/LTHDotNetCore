@@ -15,8 +15,15 @@ namespace LTHDOtNetCore.RestApi.Controllers
     [ApiController]
     public class BlogDapperController : ControllerBase
     {
-        private readonly DapperService _dapperService = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
-        
+        //private readonly DapperService _dapperService = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+
+        private readonly DapperService _dapperService;
+
+        public BlogDapperController(DapperService dapperService)
+        {
+            _dapperService = dapperService;
+        }
+
         [HttpGet]
         public IActionResult GetAllBlogs()
         {

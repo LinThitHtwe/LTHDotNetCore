@@ -13,11 +13,16 @@ namespace LTHDOtNetCore.RestApi.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
-        private AppDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
         
-        public BlogController()
+        //public BlogController()
+        //{
+        //    _dbContext = new AppDbContext();
+        //}
+
+        public BlogController(AppDbContext context)
         {
-            _dbContext = new AppDbContext();
+            _dbContext = context;
         }
 
         [HttpGet]

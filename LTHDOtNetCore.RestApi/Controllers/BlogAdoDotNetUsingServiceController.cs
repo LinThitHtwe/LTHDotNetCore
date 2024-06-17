@@ -17,10 +17,14 @@ namespace LTHDOtNetCore.RestApi.Controllers
     [ApiController]
     public class BlogAdoDotNetUsingServiceController : ControllerBase
     {
-        private readonly AdoDotNetService _adoDotNetService = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
+        //private readonly AdoDotNetService _adoDotNetService = new(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
 
+        private readonly AdoDotNetService _adoDotNetService;
 
-        public BlogAdoDotNetUsingServiceController() { }
+        public BlogAdoDotNetUsingServiceController(AdoDotNetService adoDotNetService)
+        {
+            _adoDotNetService = adoDotNetService;
+        }
 
         [HttpGet]
         public IActionResult GetAllBlogs()
