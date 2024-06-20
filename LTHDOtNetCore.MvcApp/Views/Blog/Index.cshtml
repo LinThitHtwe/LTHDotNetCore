@@ -1,0 +1,28 @@
+﻿@model List<BlogModel>
+@{
+    ViewData["Title"] = "Blog";
+    int count = 0;
+}
+<h2>Blog List</h2>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <td>No.</td>
+            <td>Title</td>
+            <td>Author</td>
+            <td>Content</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var blog in Model)
+        {
+            <tr>
+                <td>@(++count)</td>
+                <td>@blog.Title</td>
+                <td>@blog.Author</td>
+                <td>@blog.Content</td>
+            </tr>
+        }
+    </tbody>
+</table>
