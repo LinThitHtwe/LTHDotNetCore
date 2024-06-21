@@ -14,6 +14,7 @@
             <td>Title</td>
             <td>Author</td>
             <td>Content</td>
+            <td></td>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,12 @@
                 <td>@blog.Title</td>
                 <td>@blog.Author</td>
                 <td>@blog.Content</td>
+                <td>
+                    <a class="btn btn-warning" href="/Blog/Edit/@blog.Id">
+                        Edit
+                    </a>
+                    
+                </td>
             </tr>
         }
     </tbody>
