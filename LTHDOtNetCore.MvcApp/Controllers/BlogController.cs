@@ -46,8 +46,8 @@ namespace LTHDOtNetCore.MvcApp.Controllers
         [ActionName("Edit")]
         public async Task<IActionResult> BlogEdit(int id)
         {
-            var blog = await _context.Blogs.FirstOrDefaultAsync(b=> b.Id == id);
-            if(blog is null)
+            var blog = await GetBlogById(id);
+            if (blog is null)
             {
                 return Redirect("/Error");
             }
@@ -58,7 +58,7 @@ namespace LTHDOtNetCore.MvcApp.Controllers
         [ActionName("Update")]
         public async Task<IActionResult> BlogEdit(int id, BlogModel requestBlog)
         {
-            var blog = await _context.Blogs.FirstOrDefaultAsync(b => b.Id == id);
+            var blog = await GetBlogById(id);
             if (blog is null)
             {
                 return Redirect("/Error");
@@ -75,6 +75,32 @@ namespace LTHDOtNetCore.MvcApp.Controllers
             }
 
             return Redirect("/Blog");
+        }
+
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteBlog(int id)
+        {
+            var blog = await GetBlogById(id);
+            if (blog is null)
+            {
+                return Redirect("/Error");
+            }
+
+            _context.Blogs.Remove(blog);
+            var result = await _context.SaveChangesAsync();
+            if (result < 1)
+            {
+                return Redirect("/Error");
+            }
+
+            return Redirect("/Blog");
+        }
+
+
+        private async Task<BlogModel?> GetBlogById(int id)
+        {
+            var blog = await _context.Blogs.FirstOrDefaultAsync(b => b.Id == id);
+            return blog;
         }
     }
 }
