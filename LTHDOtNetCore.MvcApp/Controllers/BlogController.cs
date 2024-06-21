@@ -14,7 +14,9 @@ namespace LTHDOtNetCore.MvcApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var blogs = await _context.Blogs.OrderByDescending(blog => blog.Id).ToListAsync();
+            var blogs = await _context.Blogs.AsNoTracking()
+                                            .OrderByDescending(blog => blog.Id)
+                                            .ToListAsync();
             return View(blogs);
         }
 
@@ -68,6 +70,8 @@ namespace LTHDOtNetCore.MvcApp.Controllers
             blog.Author = requestBlog.Author;
             blog.Content = requestBlog.Content;
 
+            _context.Entry(blog).State = EntityState.Modified;
+
             var result = await _context.SaveChangesAsync();
             if (result < 1)
             {
@@ -99,7 +103,7 @@ namespace LTHDOtNetCore.MvcApp.Controllers
 
         private async Task<BlogModel?> GetBlogById(int id)
         {
-            var blog = await _context.Blogs.FirstOrDefaultAsync(b => b.Id == id);
+            var blog = await _context.Blogs.AsNoTracking().FirstOrDefaultAsync(b => b.Id == id);
             return blog;
         }
     }
