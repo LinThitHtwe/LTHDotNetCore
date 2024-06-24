@@ -1,4 +1,5 @@
 using LTHDOtNetCore.MinimalApi;
+using LTHDOtNetCore.MinimalApi.Features.Blog;
 using LTHDOtNetCore.MinimalApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,53 +30,6 @@ app.UseHttpsRedirection();
 
 app.MapGet("/helloWorld", () => { Console.WriteLine("Hello"); });
 
-app.MapGet("/blog", async (AppDbContext context) =>
-{
-    var blogs = await context.Blogs.AsNoTracking().ToListAsync();
-    return Results.Ok(blogs);
-});
-
-app.MapGet("/blog/{id}", async (AppDbContext context, int id) =>
-{
-    var blog = await context.Blogs.AsNoTracking().FirstOrDefaultAsync(b => b.Id == id);
-    if (blog is null)
-    {
-        return Results.NotFound();
-    }
-    return Results.Ok(blog);
-});
-
-app.MapPost("/blog", async (AppDbContext context, BlogModel requestBlog) =>
-{
-    await context.Blogs.AddAsync(requestBlog);
-    await context.SaveChangesAsync();
-    return Results.Ok("Successfully Created");
-});
-
-app.MapPut("/blog/{id}",async (AppDbContext context,int id,BlogModel requestBlog) =>
-{
-    var existingBlog = await context.Blogs.FirstOrDefaultAsync(b => b.Id == id);
-    if (existingBlog is null)
-    {
-        return Results.NotFound();
-    }
-    existingBlog.Title = requestBlog.Title;
-    existingBlog.Author = requestBlog.Author;
-    existingBlog.Content = requestBlog.Content;
-    await context.SaveChangesAsync();
-    return Results.Ok("Successfully Updated");
-});
-
-app.MapDelete("/blog/{id}", async (AppDbContext context, int id) =>
-{
-    var existingBlog = await context.Blogs.FirstOrDefaultAsync(b => b.Id == id);
-    if (existingBlog is null)
-    {
-        return Results.NotFound();
-    }
-    context.Blogs.Remove(existingBlog);
-    await context.SaveChangesAsync();
-    return Results.Ok("Successfully Deleted");
-});
+app.BlogRoute("/blog");
 
 app.Run();
