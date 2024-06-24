@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.NLayer.Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.NLayer.DataAccess", "LTHDOtNetCore.NLayer.DataAccess\LTHDOtNetCore.NLayer.DataAccess.csproj", "{3D84CAA4-5AD4-467F-BE1A-23758AD69D6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTHDOtNetCore.MvcApp", "LTHDOtNetCore.MvcApp\LTHDOtNetCore.MvcApp.csproj", "{F1D6A517-F58A-4A95-AEF8-EBA56890C98F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.MvcApp", "LTHDOtNetCore.MvcApp\LTHDOtNetCore.MvcApp.csproj", "{F1D6A517-F58A-4A95-AEF8-EBA56890C98F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTHDOtNetCore.MinimalApi", "LTHDOtNetCore.MinimalApi\LTHDOtNetCore.MinimalApi.csproj", "{C4F819D1-3279-4DCB-9DB8-91DD05136C9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{F1D6A517-F58A-4A95-AEF8-EBA56890C98F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D6A517-F58A-4A95-AEF8-EBA56890C98F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1D6A517-F58A-4A95-AEF8-EBA56890C98F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F819D1-3279-4DCB-9DB8-91DD05136C9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F819D1-3279-4DCB-9DB8-91DD05136C9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F819D1-3279-4DCB-9DB8-91DD05136C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F819D1-3279-4DCB-9DB8-91DD05136C9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
