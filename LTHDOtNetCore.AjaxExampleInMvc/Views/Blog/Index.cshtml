@@ -29,11 +29,41 @@
                     <a class="btn btn-warning" href="/Blog/Edit/@blog.Id">
                         Edit
                     </a>
-                    <a class="btn btn-danger" href="/Blog/Delete/@blog.Id">
+                    <button class="btn btn-danger btn-delete" data-blog-id="@blog.Id">
                         Delete
-                    </a>
+                    </button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section scripts {
+    <script>
+        $('.btn-delete').click(function () {
+
+            const isConfirm = confirm("Do you want to Delete this?");
+            if (!isConfirm) return;
+
+            const id = $(this).data('blog-id');
+
+            $.ajax({
+                type: 'POST',
+                url: `/Blog/Delete/${id}`,
+                data: { },
+                dataType: "JSON",
+                success: function (result) {
+                    if (!result.isSuccess) {
+                        alert(result.message);
+                        return;
+                    }
+                    alert(result.message);
+                    location.href = "/Blog/Index";
+                },
+                error: function (xhr, status, error) {
+                    console.log({ xhr, status, error })
+                }
+            });
+        })
+    </script>
+}

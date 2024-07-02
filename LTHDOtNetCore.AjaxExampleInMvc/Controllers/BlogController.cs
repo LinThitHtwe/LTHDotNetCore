@@ -44,7 +44,14 @@ namespace LTHDOtNetCore.AjaxExampleInMvc.Controllers
                 return Redirect("/Error");
             }
 
-            return Redirect("/Blog");
+            JsonResponseModel jsonResponse = new()
+            {
+                IsSuccess = result > 0,
+                Message = result > 0 ? "Successfully Created" : "Create Failed.",
+                Data = requestBlog
+            };
+
+            return Json(jsonResponse);
         }
 
         [ActionName("Edit")]
@@ -58,7 +65,7 @@ namespace LTHDOtNetCore.AjaxExampleInMvc.Controllers
             return View("BlogEdit", blog);
         }
 
-        [HttpPost]
+        [HttpPut]
         [ActionName("Update")]
         public async Task<IActionResult> BlogEdit(int id, BlogModel requestBlog)
         {
@@ -67,6 +74,7 @@ namespace LTHDOtNetCore.AjaxExampleInMvc.Controllers
             {
                 return Redirect("/Error");
             }
+
 
             blog.Title = requestBlog.Title;
             blog.Author = requestBlog.Author;
@@ -80,7 +88,14 @@ namespace LTHDOtNetCore.AjaxExampleInMvc.Controllers
                 return Redirect("/Error");
             }
 
-            return Redirect("/Blog");
+            JsonResponseModel jsonResponse = new()
+            {
+                IsSuccess = result > 0,
+                Message = result > 0 ? "Successfully Updated" : "Update Failed.",
+                Data = requestBlog
+            };
+
+            return Json(jsonResponse);
         }
 
         [ActionName("Delete")]
@@ -99,7 +114,14 @@ namespace LTHDOtNetCore.AjaxExampleInMvc.Controllers
                 return Redirect("/Error");
             }
 
-            return Redirect("/Blog");
+            JsonResponseModel jsonResponse = new()
+            {
+                IsSuccess = result > 0,
+                Message = result > 0 ? "Successfully Deleted" : "Delete Failed.",
+                Data = null
+            };
+
+            return Json(jsonResponse);
         }
 
 
