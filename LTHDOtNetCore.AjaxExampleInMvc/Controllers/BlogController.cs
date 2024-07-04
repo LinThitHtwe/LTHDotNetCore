@@ -75,7 +75,6 @@ namespace LTHDOtNetCore.AjaxExampleInMvc.Controllers
                 return Redirect("/Error");
             }
 
-
             blog.Title = requestBlog.Title;
             blog.Author = requestBlog.Author;
             blog.Content = requestBlog.Content;

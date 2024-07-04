@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.MvcApp", "LTH
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.MinimalApi", "LTHDOtNetCore.MinimalApi\LTHDOtNetCore.MinimalApi.csproj", "{C4F819D1-3279-4DCB-9DB8-91DD05136C9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTHDOtNetCore.AjaxExampleInMvc", "LTHDOtNetCore.AjaxExampleInMvc\LTHDOtNetCore.AjaxExampleInMvc.csproj", "{1709DB97-9AC9-42F5-8437-83DED383F156}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.AjaxExampleInMvc", "LTHDOtNetCore.AjaxExampleInMvc\LTHDOtNetCore.AjaxExampleInMvc.csproj", "{1709DB97-9AC9-42F5-8437-83DED383F156}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTHDOtNetCore.MvcChartApp", "LTHDOtNetCore.MvcChartApp\LTHDOtNetCore.MvcChartApp.csproj", "{047D80F6-C597-426D-B2DF-9BA710CF15A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,10 @@ Global
 		{1709DB97-9AC9-42F5-8437-83DED383F156}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1709DB97-9AC9-42F5-8437-83DED383F156}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1709DB97-9AC9-42F5-8437-83DED383F156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{047D80F6-C597-426D-B2DF-9BA710CF15A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{047D80F6-C597-426D-B2DF-9BA710CF15A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{047D80F6-C597-426D-B2DF-9BA710CF15A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{047D80F6-C597-426D-B2DF-9BA710CF15A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
