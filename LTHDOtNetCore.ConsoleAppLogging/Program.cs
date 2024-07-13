@@ -1,9 +1,18 @@
 ﻿using Serilog;
+using Serilog.Sinks.MSSqlServer;
 
 Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
             .WriteTo.File("logs/LTHDOtNetCore.ConsoleAppLogging.txt", rollingInterval: RollingInterval.Hour)
+            .WriteTo
+            .MSSqlServer(
+            connectionString: "Server=localhost\\SQLEXPRES;Database=DotnetTrainingBatch4;User ID=sa;Password=root;TrustServerCertificate=True;",
+            sinkOptions: new MSSqlServerSinkOptions
+            {
+            TableName = "LogEvents",
+            AutoCreateSqlTable = true
+            })
             .CreateLogger();
 
 Log.Fatal("Hello, world!");
