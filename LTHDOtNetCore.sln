@@ -41,7 +41,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.MvcChartApp",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.ConsoleAppLogging", "LTHDOtNetCore.ConsoleAppLogging\LTHDOtNetCore.ConsoleAppLogging.csproj", "{F63D21BD-4F8F-4DC0-9D36-FD1A9616B568}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTHDOtNetCore.RealtimeChatApp", "LTHDOtNetCore.RealtimeChatApp\LTHDOtNetCore.RealtimeChatApp.csproj", "{D733DF99-C19C-4761-B9A3-6E00F87461BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.RealtimeChatApp", "LTHDOtNetCore.RealtimeChatApp\LTHDOtNetCore.RealtimeChatApp.csproj", "{D733DF99-C19C-4761-B9A3-6E00F87461BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTHDOtNetCore.RealTimeChartApp", "LTHDOtNetCore.RealTimeChartApp\LTHDOtNetCore.RealTimeChartApp.csproj", "{68FC4B65-4E61-4BC3-98EC-5A9A78F30524}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +131,10 @@ Global
 		{D733DF99-C19C-4761-B9A3-6E00F87461BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D733DF99-C19C-4761-B9A3-6E00F87461BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D733DF99-C19C-4761-B9A3-6E00F87461BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68FC4B65-4E61-4BC3-98EC-5A9A78F30524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68FC4B65-4E61-4BC3-98EC-5A9A78F30524}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68FC4B65-4E61-4BC3-98EC-5A9A78F30524}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68FC4B65-4E61-4BC3-98EC-5A9A78F30524}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
