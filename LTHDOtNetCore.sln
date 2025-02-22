@@ -47,6 +47,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTHDOtNetCore.RealTimeChart
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTHDOtNetCore.ConsoleAppEFCore", "LTHDOtNetCore.ConsoleAppEFCore\LTHDOtNetCore.ConsoleAppEFCore.csproj", "{1D11B5F2-289B-478C-86C6-3A5544288F05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LTHDotNetCore.BlazorWasm", "LTHDotNetCore.BlazorWasm\LTHDotNetCore.BlazorWasm.csproj", "{07301B94-AD03-433B-AF36-80A3E3EF076B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +143,10 @@ Global
 		{1D11B5F2-289B-478C-86C6-3A5544288F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D11B5F2-289B-478C-86C6-3A5544288F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D11B5F2-289B-478C-86C6-3A5544288F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07301B94-AD03-433B-AF36-80A3E3EF076B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07301B94-AD03-433B-AF36-80A3E3EF076B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07301B94-AD03-433B-AF36-80A3E3EF076B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07301B94-AD03-433B-AF36-80A3E3EF076B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
